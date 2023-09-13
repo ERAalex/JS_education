@@ -3,7 +3,7 @@ let seconds = document.getElementById('seconds')
 let minutes = document.getElementById('minutes')
 let hours = document.getElementById('hours')
 
-setInterval(() => {
+let timer = setInterval(() => {
     if (seconds.textContent > 10) {
         seconds.textContent = Number(seconds.textContent) - 1
     } else {
@@ -13,24 +13,27 @@ setInterval(() => {
     if (seconds.textContent == 0 ) {
         if (minutes.textContent == 0) {
             if (hours.textContent == 0){
+                clearTimeout(timer);
                 alert('Вы победили в конкурсе!');
-
+                
             }
-            if (hours.textContent > 11) {
+            else if (hours.textContent > 11) {
                 minutes.textContent = 59
                 hours.textContent -= 1
+                seconds.textContent = 59
             } else {
                 hours.textContent = "0" + (hours.textContent - 1)
                 minutes.textContent = 59
+                seconds.textContent = 59
             }
-            seconds.textContent = 59
+
         } else {
             if (minutes.textContent > 11) {
                 minutes.textContent = minutes.textContent - 1
                 seconds.textContent = 59
             } else {
                 minutes.textContent = "0" + (minutes.textContent - 1)
-            seconds.textContent = 59
+                seconds.textContent = 59
             }
         }
     }

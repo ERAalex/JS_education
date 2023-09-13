@@ -11,7 +11,9 @@ for (let i = 1; i < 10; i++) {
             
             if (deadHole.textContent === '5') {
                 alert("Вы выиграли")
-                location.reload()
+                deadHole.textContent = 0
+                lostHole.textContent = 0
+                
             }
 
         } else {
@@ -20,7 +22,9 @@ for (let i = 1; i < 10; i++) {
             console.log(lostHole.textContent)
             if (lostHole.textContent === '5') {
                 alert("Вы проиграли")
-                location.reload()
+                deadHole.textContent = 0
+                lostHole.textContent = 0
+               
             }
         }
     }

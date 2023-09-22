@@ -18,7 +18,6 @@ for (let i = 0; i < closeBotton.length; i++) {
     closeBotton[i].onclick = function () {
         if (modalMain.className.includes('modal_active')) {
             modalMain.classList.remove('modal_active')
-            modalSuccess.classList.add('modal_active')
         } else {
             modalSuccess.classList.remove('modal_active')
         }

@@ -1,5 +1,4 @@
 const chatStartWidget = document.querySelector(".chat-widget")
-
 const chatWidgetSide = document.querySelector(".chat-widget__side")
 const chatWidgetInput = document.querySelector(".chat-widget__input")
 const chatWidgetMessages = document.querySelector(".chat-widget__messages")
@@ -17,9 +16,17 @@ function randomMessage(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
+function areYouStillAlive() {
+    console.log('alive')
+    setTimeout(function(){
+        chatWidgetMessages.innerHTML += `<div class="message">
+        <div class="message__text">Вы тут? вы живы?</div></div>`
+    }, 30000);
+}
 
 chatStartWidget.addEventListener("click", () => {
     chatStartWidget.classList.add("chat-widget_active");
+    areYouStillAlive()
 })
 
 
@@ -28,7 +35,7 @@ chatWidgetInput.addEventListener("keydown", (e) => {
     let today = new Date();
     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-    let someResponse = randomMessage(1,6)
+    let someResponse = randomMessage(1,4)
 
     let checkKey = ''
     checkKey = e.key
@@ -41,15 +48,15 @@ chatWidgetInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         if (messageText === '') {
         } else {
-            console.log(messageText)
             messageText = ''
 
             chatWidgetMessages.innerHTML += `<div class="message message_client">
             <div class="message__time">${date}</div>
             <div class="message__text">${chatWidgetInput.value}</div></div>
             <div class="message__text">${messagesResponse[someResponse]}</div></div>`
-
             chatWidgetInput.value = ''
+
+            areYouStillAlive()
 
         }
     }

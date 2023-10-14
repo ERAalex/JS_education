@@ -2,6 +2,7 @@ const chatStartWidget = document.querySelector(".chat-widget")
 const chatWidgetSide = document.querySelector(".chat-widget__side")
 const chatWidgetInput = document.querySelector(".chat-widget__input")
 const chatWidgetMessages = document.querySelector(".chat-widget__messages")
+
 let messageText = ''
 
 const messagesResponse = [
@@ -46,14 +47,17 @@ chatWidgetInput.addEventListener("keydown", (e) => {
     }
 
     if (e.key === "Enter") {
-        if (messageText === '') {
+        // regular expression to find only spaces in str...
+        if (messageText === '' || (!/\S/.test(messageText))) {
         } else {
             messageText = ''
 
             chatWidgetMessages.innerHTML += `<div class="message message_client">
             <div class="message__time">${date}</div>
             <div class="message__text">${chatWidgetInput.value}</div></div>
-            <div class="message__text">${messagesResponse[someResponse]}</div></div>`
+
+            <div class="message__time">${date}</div>
+            <div class="message message__text">${messagesResponse[someResponse]}</div></div>`
             chatWidgetInput.value = ''
 
             areYouStillAlive()

@@ -17,3 +17,4 @@ for (let item of hasTooltip) {
         toolTip.style.left = position.left + 'px';
     })
 }
+

@@ -2,10 +2,11 @@ const addTask = document.getElementById("tasks__add")
 const taskInput = document.getElementById("task__input")
 const taskList = document.getElementById("tasks__list")
 
-// optimize part of the code, to not duplicate
-function repeatedCode(value) {
+
+
+function repeatedCode(key) {
     taskList.innerHTML += `<div class="task">
-    <div class="task__title">${value}</div>
+    <div class="task__title">${localStorage.getItem(key)}</div>
     <a href="#" class="task__remove">&times;</a>
   </div>`
 }
@@ -17,22 +18,34 @@ document.addEventListener('DOMContentLoaded', function() {
         valueCheck = localStorage.getItem(key)
 
         if (valueCheck != null) {
-            repeatedCode(valueCheck)
+
+        repeatedCode(key)
+    //     taskList.innerHTML += `<div class="task">
+    //     <div class="task__title">${localStorage.getItem(key)}</div>
+    //     <a href="#" class="task__remove">&times;</a>
+    //   </div>`
+
       }
+
     }
 
       deleteFromStorage()
+
 }, false);
 
 
 addTask.addEventListener("click", (e) => {
     e.preventDefault()
     if (taskInput.value.trim() !== "") {
+        console.log(taskInput.value)
         
         let time = Date().toLocaleString();
         localStorage.setItem(time, taskInput.value);
 
-        repeatedCode(taskInput.value)
+        taskList.innerHTML += `<div class="task">
+       <div class="task__title">${taskInput.value}</div>
+       <a href="#" class="task__remove">&times;</a>
+     </div>`
         taskInput.value = ""
     }
 

@@ -43,7 +43,7 @@ for (let i = 0; i < productAddButton.length; i++) {
         let src = productImage[i].getAttribute("src")
         let indx = children.findIndex(e => e.getAttribute("data-id") === attr)
 
-        if (children !== [] && indx != -1) {
+        if (indx != -1) {
             const cartProductCount = Array.from(document.querySelectorAll(".cart__product-count"))
             cartProductCount[indx].textContent = parseInt(cartProductCount[indx].textContent) + parseInt(productQuantity[i].textContent)
         }
@@ -64,26 +64,21 @@ for (let i = 0; i < productDeleteButton.length; i++) {
         let attr = productDeleteButton[i].closest(".product").getAttribute("data-id")
         let src = productImage[i].getAttribute("src")
         let indx = children.findIndex(e => e.getAttribute("data-id") === attr)
-
-        console.log(attr)
     
 
-        if (children !== [] && indx != -1) {
+        if (indx != -1) {
             const cartProductCount = Array.from(document.querySelectorAll(".cart__product-count"))
-            console.log(cartProductCount[indx].textContent)
-
 
             if (parseInt(cartProductCount[indx].textContent) < parseInt(productQuantity[i].textContent)){
                 
                 // let's find element in cart_products and delete it
                 const parent = document.querySelector('.cart__products');
                 const child1 = parent.querySelector(`[data-id="${attr}"]`);
-                console.log(child1)
+
                 child1.remove()
 
                 
             } else if (parseInt(cartProductCount[indx].textContent) === '0') {
-                console.log('hey')
 
             }
             

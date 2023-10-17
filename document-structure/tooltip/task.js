@@ -12,7 +12,6 @@ for (let item of hasTooltip) {
 
         check = document.querySelector('.tooltip_active')
         if (check != null) {
-            console.log('active')
             check.textContent = newText
 
             check.style.top = position.bottom + 'px';

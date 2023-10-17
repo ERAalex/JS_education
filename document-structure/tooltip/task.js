@@ -5,16 +5,28 @@ toolTip.classList.add("tooltip")
 for (let item of hasTooltip) {
     item.addEventListener("click", (event) => {
         // find position to give it to our toolTip, after click
+        event.preventDefault()
+        
+        let newText = item.getAttribute("title")
         let position = item.getBoundingClientRect()
 
-        event.preventDefault()
-        item.insertAdjacentElement("afterend", toolTip)
-        let newText = item.getAttribute("title")
-        toolTip.textContent = newText
-        toolTip.classList.toggle("tooltip_active")
+        check = document.querySelector('.tooltip_active')
+        if (check != null) {
+            console.log('active')
+            check.textContent = newText
 
-        toolTip.style.top = position.bottom + 'px';
-        toolTip.style.left = position.left + 'px';
+            check.style.top = position.bottom + 'px';
+            check.style.left = position.left + 'px';
+
+        } else {
+        
+            item.insertAdjacentElement("afterend", toolTip)
+            toolTip.textContent = newText
+            toolTip.classList.toggle("tooltip_active")
+    
+            toolTip.style.top = position.bottom + 'px';
+            toolTip.style.left = position.left + 'px';
+
+        }
     })
 }
-
